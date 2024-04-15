@@ -1,13 +1,89 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  font-family: Roboto, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.ant-layout{
+  min-height: 100vh;
 }
+
+.ant-menu-item:hover {
+  background-color: blue !important; /* Change to your desired background color */
+  color: white !important; /* Change text color if needed */
+}
+.ant-layout-sider{
+  flex: 0 0 250px !important;
+  max-width: 250px !important;
+  min-width: 250px !important;
+  width: 250px !important;
+}
+.ant-layout-sider-collapsed{
+  flex: 0 0 80px !important;
+  max-width: 80px !important;
+  min-width: 80px !important;
+  width: 80px !important;
+}
+.ant-menu-title-content{
+  font-size: 16px;
+}
+.sm-logo{
+  display: none;
+  transition: all 0.3s;
+}
+.lg-logo{
+  transition: all 0.3s;
+}
+.ant-layout-sider-collapsed .sm-logo{
+  display: block;
+  transition: all 0.3s;
+}
+.ant-layout-sider-collapsed .lg-logo{
+  display: none;
+  transition: all 0.3s;
+}
+
+.ant-layout-header h5{
+  line-height: 20px;
+  margin: 0;
+  font-size: 14px;
+}
+.ant-layout-header p{
+  line-height: 20px;
+  margin: 0;
+  font-size: 13px;
+}
+.ant-layout-header div .badge{
+  top: 16px; 
+  right: -1px;
+} 
+.logo{
+  /* background-color: #ffd334; */
+  background-color: blue;
+  margin: 0;
+  height: 64px;
+}
+main{
+  height: 85vh;
+  overflow-y: scroll;
+  background-color: transparent !important;
+}
+main::-webkit-scrollbar {
+  width: 0px;
+}
+
+.green{
+  color: green;
+  font-size: 14px;
+  font-family: Roboto !important;
+
+}
+
+.red{
+  color: red;
+  font-size: 14px;
+  font-family: Roboto !important;
+}
+
+.quill{
+  background-color: white;
+}
+
