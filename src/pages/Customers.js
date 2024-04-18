@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table } from "antd";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../features/customers/CustomerSlice';
 
 const columns = [
   {
@@ -11,28 +13,41 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.name.length - b.name.length,
   },
   {
-    title: 'Product',
-    dataIndex: 'product',
-    key: 'product',
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
   },
   {
-    title: 'Status',
-    dataIndex: 'status',
+    title: 'Mobile Number',
+    dataIndex: 'mobile',
+    key: 'mobile',
   },
 ];
-const datas = [];
-for (let i = 0; i < 46; i++) {
-  datas.push({
-    key: i,
-    name: `Edward King ${i}`,
-    product: 32,
-    status: `London, Park Lane no. ${i}`,
-  });
-}
+
 
 const Customers = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+  const customerstate = useSelector(state => state.customer.customers);
+  const datas = [];
+  for (let i = 0; i < customerstate.length; i++) {
+    if(customerstate[i].role !== 'admin'){
+      datas.push({
+        key: i + 1,
+        name: customerstate[i].firstName + ' ' + customerstate[i].lastName,
+        email: customerstate[i].email,
+        mobile: customerstate[i].mobile
+      })
+    }
+  }
+  
+  
   return (
     <div>
         <h3 className='mb-4 title'> Customers</h3>
