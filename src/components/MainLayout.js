@@ -10,6 +10,8 @@ import {IoIosNotifications} from 'react-icons/io';
 import { Layout, Menu, Button, theme } from 'antd';
 import {Outlet} from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu; // Import SubMenu from Ant Design
@@ -222,6 +224,18 @@ const MainLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
+          <ToastContainer 
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme= 'colored'
+           />
             <Outlet />
         </Content>
       </Layout>

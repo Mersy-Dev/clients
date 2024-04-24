@@ -22,6 +22,17 @@ export const getBlogs = createAsyncThunk(
         }
     }
 );
+export const createBlog = createAsyncThunk(
+    "blog/create-blog",
+    async (blog, thunkAPI) => {
+        try {
+            return await blogService.createBlog(blog);
+        } catch (error) {
+            return thunkAPI.rejectWithValue({error: error.message})
+        }
+    }
+);
+
 export const blogSlice = createSlice({
     name: "blogs",
     initialState,
@@ -38,7 +49,18 @@ export const blogSlice = createSlice({
             state.isLoading = false;
             state.isError = true;
             state.message = action.error;
-        }); 
+        }).addCase(createBlog.pending, (state, action) => {
+            state.isLoading = true;
+        }).addCase(createBlog.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.blogsCreated = action.payload;
+        }).addCase(createBlog.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.error;
+        });
     }
 });
 

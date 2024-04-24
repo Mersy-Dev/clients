@@ -38,6 +38,12 @@ const columns = [
     sorter: (a, b) => a.category.length - b.category.length,
   },
   {
+    title: 'Tags',
+    dataIndex: 'tags',
+    key: 'tags',
+  }
+,
+  {
     title: 'Color',
     dataIndex: 'color',
   },
@@ -70,6 +76,7 @@ const ProductList = () => {
       description: productstate[i].description,
       brand: productstate[i].brand,
       category: productstate[i].category,
+      tags: productstate[i].tags,
       color: productstate[i].color,
       price: `$ ${productstate[i].price}`,
       action: (

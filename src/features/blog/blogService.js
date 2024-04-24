@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {base_url} from '../../utils/base_url'; 
-
+import { config } from '../../utils/axiosConfig';
 
 
 const getBlogs = async () => {
@@ -8,11 +8,15 @@ const getBlogs = async () => {
     return response.data;
 };
 
-
-export const blogService = {
-    getBlogs
+const createBlog = async (blog) => {
+    const response = await axios.post(`${base_url}blog/`, blog, config);
+    return response.data;
 }
 
 
+export const blogService = {
+    getBlogs,
+    createBlog
+}
 
 export default blogService;

@@ -9,6 +9,7 @@ import { login } from '../features/auth/authSlice';
 
 
 
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,9 +49,9 @@ const Login = () => {
         {message.message == "Rejected" ? " You are not authorized to access this page" : ""}
         </div>
         <form action="" onSubmit={formik.handleSubmit}>
-          <CustomInput type='email' name="email" val={formik.values.email} id='email' label='Email Address' onchng={formik.handleChange("email")} />
+          <CustomInput type='email' name="email" value={formik.values.email} id='email' label='Email Address' onChange={formik.handleChange("email")} />
           {formik.touched.email && formik.errors.email ? <div className='text-danger'>{formik.errors.email}</div> : null }
-          <CustomInput type='password' name="password" val={formik.values.password} id='password' label='Password' onchng={formik.handleChange("password")} />
+          <CustomInput type='password' name="password" value={formik.values.password} id='password' label='Password' onChange={formik.handleChange("password")} />
           {formik.touched.password && formik.errors.password ? <div className='text-danger'>{formik.errors.password}</div> : null }
           <div className=' mb-3 text-end'>
               <Link to="/forgot-password" className=''>Forgot Password?</Link>

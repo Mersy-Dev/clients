@@ -22,6 +22,20 @@ export const getPcategory = createAsyncThunk(
         }
     }
 );
+
+export const createPcategory = createAsyncThunk(
+    "productCategory/create-category",
+    async (categoryData, thunkAPI) => {
+        try {
+            return await pcategoryService.createPcategory(categoryData);
+        } catch (error) {
+            return thunkAPI.rejectWithValue({error: error.message})
+        }
+    }
+);
+
+
+
 export const pcategorySlice = createSlice({
     name: "pcategory",
     initialState,
@@ -38,7 +52,18 @@ export const pcategorySlice = createSlice({
             state.isLoading = false;
             state.isError = true;
             state.message = action.error;
-        }); 
+        }).addCase(createPcategory.pending, (state, action) => {
+            state.isLoading = true;
+        }).addCase(createPcategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.pcategory = action.payload;
+        }).addCase(createPcategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.error;
+        });
     }
 });
 

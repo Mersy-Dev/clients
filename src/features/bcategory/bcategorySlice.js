@@ -22,6 +22,17 @@ export const getBcategories = createAsyncThunk(
         }
     }
 );
+export const createBcategory = createAsyncThunk(
+    "blogCategory/create-category",
+    async (bcategoryData, thunkAPI) => {
+        try {
+            return await bcategoryService.createBcategory(bcategoryData);
+        } catch (error) {
+            return thunkAPI.rejectWithValue({error: error.message})
+        }
+    }
+);
+
 export const bcategorySlice = createSlice({
     name: "bcategory",
     initialState,
@@ -38,8 +49,20 @@ export const bcategorySlice = createSlice({
             state.isLoading = false;
             state.isError = true;
             state.message = action.error;
-        }); 
-    }
+        }).addCase(createBcategory.pending, (state, action) => {
+            state.isLoading = true;
+        }).addCase(createBcategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.bcategoryCreated = action.payload;
+        }).addCase(createBcategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.error;
+    
+    });
+}
 });
 
 export default bcategorySlice.reducer; 
