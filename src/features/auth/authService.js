@@ -19,15 +19,20 @@ const login = async (userData) => {
 };
 
 const getOrders = async () => {
-    const response = await axios.get(`${base_url}user/get-order`, config);
+    const response = await axios.get(`${base_url}user/get-order`,  config);
     return response.data;
 };
 
+const getOrderByUserId = async (id) => {
+    const response = await axios.post(`${base_url}user/getorder-byuser/${id}`, " ", config);
+    return response.data;
+}
 
-
+ 
 export const authService = {
     login,
-    getOrders
+    getOrders,
+    getOrderByUserId
 }
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineDashboard, AiOutlineShoppingCart, AiOutlineUser, AiOutlineBgColors, AiOutlinePicLeft, AiOutlinePicRight, } from 'react-icons/ai';
 import { SiBrandfolder } from 'react-icons/si';
+import {RiCouponLine} from 'react-icons/ri';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { FaClipboardList, FaBloggerB } from 'react-icons/fa';
 import { ImBlog } from 'react-icons/im';
@@ -90,6 +91,23 @@ const MainLayout = () => {
       key: 'orders',
       icon: <FaClipboardList className='fs-5' />,
       label: 'Orders',
+    },
+    {
+      key: 'marketing',
+      icon: <RiCouponLine className='fs-5' />,
+      label: 'Marketing',
+      children: [
+        {
+          key: 'coupon',
+          icon: <RiCouponLine className='fs-6' />,
+          label: 'Add Coupon',
+        },
+        {
+          key: 'coupon-list',
+          icon: <RiCouponLine className='fs-6' />,
+          label: 'Coupon List',
+        },
+      ],
     },
     {
       key: 'blog',

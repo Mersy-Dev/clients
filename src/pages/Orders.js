@@ -44,21 +44,16 @@ const Orders = () => {
   useEffect(() => {
      dispatch(getOrders())
   }, [dispatch]);
-    const orderstate = useSelector((state) => state.auth.orders);
+    const orderState = useSelector((state) => state.auth.orders);
+    console.log(orderState);
       const datas = [];
-      for (let i = 0; i < orderstate.length; i++) {
+      for (let i = 0; i < orderState.length; i++) {
         datas.push({
           key: i + 1,
-          name: orderstate[i].orderby.firstName + " " + orderstate[i].orderby.lastName,
-          product: orderstate[i].products.map((i, j)=>{
-            return (
-              <ul key={j}>
-                <li className=' list-unstyled'>{i.product.title}</li>
-              </ul>
-          );
-          }),
-          amount:orderstate[i].paymentIntent.amount,
-          date: new Date(orderstate[i].createdAt).toLocaleString(), 
+          name: orderState[i].orderby.firstName + " " + orderState[i].orderby.lastName,
+          product: <Link to={`/admin/order/${orderState[i].orderby._id}`}>View Orders</Link>,
+          amount:orderState[i].paymentIntent.amount,
+          date: new Date(orderState[i].createdAt).toLocaleString(), 
           action: (
             <>  
               <Link to="/"><BiEdit className='text-primary ms-2 me-2 fs-5' /></Link> 
@@ -67,7 +62,7 @@ const Orders = () => {
           )
       
         });
-      }
+      } 
   return (
     <div>
         <h3 className='mb-4 title'> Orders</h3>
